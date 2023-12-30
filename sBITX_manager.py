@@ -37,7 +37,7 @@ class TelnetGUI:
         master.config(menu=menubar)
 
         telnet_menu = tk.Menu(menubar, tearoff=0)
-        menubar.add_cascade(label="Main Menu", menu=telnet_menu)
+        menubar.add_cascade(label="Main", menu=telnet_menu)
 
         telnet_menu.add_command(label="Open Telnet", command=self.open_telnet)
         telnet_menu.add_command(label="Close Telnet", command=self.close_telnet)
@@ -47,9 +47,11 @@ class TelnetGUI:
         command_menu.add_command(label="Add Frequency", command=self.add_command)
         command_menu.add_command(label="VFO A", command=lambda: self.send_command("vfo a"))
         command_menu.add_command(label="VFO B", command=lambda: self.send_command("vfo b"))
-        command_menu.add_command(label="IF 63", command=lambda: self.send_command("if 63"))
-        command_menu.add_command(label="Bandwidth 2300", command=lambda: self.send_command("bw 2300"))
-        command_menu.add_command(label="Bandwidth 5000", command=lambda: self.send_command("bw 5000"))
+        command_menu.add_command(label="IF Level", command=lambda: self.show_input_dialog("IF"))
+        command_menu.add_command(label="Bandwidth", command=lambda: self.show_input_dialog("Bandwidth"))
+        command_menu.add_command(label="Audio Level", command=lambda: self.show_input_dialog("Audio"))
+        command_menu.add_command(label="RF Output", command=lambda: self.show_input_dialog("RF Output"))
+        command_menu.add_command(label="Clear Messages", command=lambda: self.send_command("clear"))
 
         command_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Mode", menu=command_menu)
@@ -57,7 +59,8 @@ class TelnetGUI:
         command_menu.add_command(label="USB", command=lambda: self.send_command("m usb"))
         command_menu.add_command(label="CW", command=lambda: self.send_command("m cw"))
         command_menu.add_command(label="FT8", command=lambda: self.send_command("m ft8"))
-        
+        command_menu.add_command(label="Digital", command=lambda: self.send_command("m digital"))
+
 
         # Display existing buttons on the main screen
         self.update_main_screen()
@@ -85,6 +88,18 @@ class TelnetGUI:
             self.command_buttons.append(button_info)
             self.save_button_config()
 
+    def show_input_dialog(self, command):
+        user_input = simpledialog.askstring(f"Enter {command} Command", f"Enter the {command} command:")
+        if user_input and command == "Bandwidth":
+            user_input = "bw " + user_input
+        if user_input and command == "IF":
+            user_input = "if " + user_input
+        if user_input and command == "RF Output":
+            user_input = "drive " + user_input        
+        if user_input and command == "Audio":
+            user_input = "audio " + user_input         
+        self.send_command(user_input)
+
     def send_command(self, command):
         try:
             if self.telnet_connection:
@@ -93,7 +108,7 @@ class TelnetGUI:
                 print(f"Command '{command}' response: {response}")
         except Exception as e:
             print(f"Error: {e}")
-
+  
     def show_context_menu(self, event, button_info):
         context_menu = tk.Menu(self.master, tearoff=0)
         context_menu.add_command(label="Edit", command=lambda info=button_info: self.edit_command(info))
