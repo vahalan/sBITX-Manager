@@ -19,7 +19,7 @@ Install on you sBITX using terminal:
 bash
 ====
 ```
-$ git clone https://github.com/marzona/rig-remote.git
+$ git clone https://github.com/drexjj/sBITX-Manager.git
 
 $ cd sBITX_manager
 
