@@ -19,11 +19,13 @@ Install on you sBITX using terminal:
 bash
 ====
 ```
-$ git clone https://github.com/drexjj/sBITX-Manager.git
+git clone https://github.com/drexjj/sBITX-Manager.git
 
-$ cd sBITX-Manager
+cd sBITX-Manager
 
-$ ./sBITX_manager.py
+chmod +x ./sBITX_manager.py
+
+./sBITX_manager.py
 
 ```
 
