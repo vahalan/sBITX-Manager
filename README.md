@@ -3,6 +3,7 @@ sBITX Telnet Manager
 
 sBITX Telnet Manager is a tool that provides additional control for the sBITX HF transceiver. This tool uses the telnet protocol interface to send commands to the sBITX for performing remote control of the tranceiver.
 
+![Alt text](images/sBITX-manager.JPG)
 
 
 Usage
