@@ -21,7 +21,7 @@ bash
 ```
 $ git clone https://github.com/drexjj/sBITX-Manager.git
 
-$ cd sBITX_manager
+$ cd sBITX-manager
 
 $ ./sBITX_manager.py
 
