@@ -16,7 +16,6 @@ You must open a telnet session from the menu before sending commands to the sBIT
 
 Install on you sBITX using terminal:
 
-bash
 ====
 ```
 git clone https://github.com/drexjj/sBITX-Manager.git
