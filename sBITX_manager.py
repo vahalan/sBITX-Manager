@@ -24,7 +24,7 @@ class TelnetGUI:
         self.master.geometry("250x350")  # Set width and height
 
         self.telnet_connection = None
-        self.telnet_host = "127.0.0.1"
+        self.telnet_host = "sbitx.local"
         self.telnet_port = 8081
 
         self.command_buttons = []
