@@ -23,7 +23,7 @@ You can use this app locally on your sBitx or on a remote computer connected to 
 Install on you sBITX using terminal:
 
 
-SBITX OR LINUX INSTALL
+SBITX OR LINUX INSTALL:
 ```
 git clone https://github.com/drexjj/sBITX-Manager.git
 
