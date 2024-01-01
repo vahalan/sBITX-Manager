@@ -52,21 +52,48 @@ class TelnetGUI:
         command_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Command", menu=command_menu)
         command_menu.add_command(label="Add Frequency", command=self.add_command)
-        command_menu.add_command(label="VFO A", command=lambda: self.send_command("vfo a"))
-        command_menu.add_command(label="VFO B", command=lambda: self.send_command("vfo b"))
         command_menu.add_command(label="IF Level", command=lambda: self.show_input_dialog("IF"))
         command_menu.add_command(label="Bandwidth", command=lambda: self.show_input_dialog("Bandwidth"))
         command_menu.add_command(label="Audio Level", command=lambda: self.show_input_dialog("Audio"))
         command_menu.add_command(label="RF Output", command=lambda: self.show_input_dialog("RF Output"))
+        command_menu.add_command(label="TX Compressor", command=lambda: self.show_input_dialog("Comp Lvl"))       
         command_menu.add_command(label="Clear Messages", command=lambda: self.send_command("clear"))
-        
+
+        vfo_submenu = tk.Menu(command_menu, tearoff=0)
+        command_menu.add_cascade(label="VFO", menu=vfo_submenu)
+        vfo_submenu.add_command(label="VFO A", command=lambda: self.send_command("vfo a"))
+        vfo_submenu.add_command(label="VFO B", command=lambda: self.send_command("vfo b"))
+
         agc_submenu = tk.Menu(command_menu, tearoff=0)
         command_menu.add_cascade(label="AGC", menu=agc_submenu)
         agc_submenu.add_command(label="Off", command=lambda: self.send_command("agc off"))
         agc_submenu.add_command(label="Slow", command=lambda: self.send_command("agc slow"))
-        agc_submenu.add_command(label="Medium", command=lambda: self.send_command("agc medium"))
+        agc_submenu.add_command(label="Medium", command=lambda: self.send_command("agc med"))
         agc_submenu.add_command(label="Fast", command=lambda: self.send_command("agc fast"))
 
+        step_submenu = tk.Menu(command_menu, tearoff=0)
+        command_menu.add_cascade(label="Step", menu=step_submenu)
+        step_submenu.add_command(label="10H", command=lambda: self.send_command("step 10h"))
+        step_submenu.add_command(label="100H", command=lambda: self.send_command("step 100h"))
+        step_submenu.add_command(label="1K", command=lambda: self.send_command("step 1k"))
+        step_submenu.add_command(label="10K", command=lambda: self.send_command("step 10k"))
+
+        rit_submenu = tk.Menu(command_menu, tearoff=0)
+        command_menu.add_cascade(label="RIT", menu=rit_submenu)
+        rit_submenu.add_command(label="On", command=lambda: self.send_command("rit on"))
+        rit_submenu.add_command(label="Off", command=lambda: self.send_command("rit off"))
+
+        splitx_submenu = tk.Menu(command_menu, tearoff=0)
+        command_menu.add_cascade(label="Split", menu=splitx_submenu)
+        splitx_submenu.add_command(label="On", command=lambda: self.send_command("split on"))
+        splitx_submenu.add_command(label="Off", command=lambda: self.send_command("split off"))
+
+        span_submenu = tk.Menu(command_menu, tearoff=0)
+        command_menu.add_cascade(label="WF Span", menu=span_submenu)
+        span_submenu.add_command(label="2.5K", command=lambda: self.send_command("span 2.5k"))
+        span_submenu.add_command(label="6K", command=lambda: self.send_command("span 6k"))
+        span_submenu.add_command(label="10K", command=lambda: self.send_command("span 10k"))
+        span_submenu.add_command(label="25K", command=lambda: self.send_command("span 25k"))
 
         command_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Mode", menu=command_menu)
@@ -113,6 +140,7 @@ class TelnetGUI:
             button.pack()
             self.command_buttons.append(button_info)
             self.save_button_config()
+            self.update_main_screen()
 
     def show_input_dialog(self, command):
         user_input = simpledialog.askstring(f"Enter {command} Command", f"Enter the {command} command:")
@@ -124,13 +152,15 @@ class TelnetGUI:
             user_input = "drive " + user_input        
         if user_input and command == "Audio":
             user_input = "audio " + user_input         
+        if user_input and command == "TX Compressor":
+            user_input = "comp " + user_input          
         self.send_command(user_input)
 
     def send_command(self, command):
         try:
             if self.telnet_connection:
                 self.telnet_connection.write(command.encode('ascii') + b'\r\n')
-                response = self.telnet_connection.read_until(b'>', timeout=2).decode('ascii')
+                response = self.telnet_connection.read_until(b'>', timeout=1).decode('ascii')
                 print(f"Command '{command}' response: {response}")
         except Exception as e:
             print(f"Error: {e}")
@@ -141,7 +171,7 @@ class TelnetGUI:
                 # Prepend "f " to the command before sending
                 command_with_f = f'f {command}'
                 self.telnet_connection.write(command_with_f.encode('ascii') + b'\r\n')
-                response = self.telnet_connection.read_until(b'>', timeout=2).decode('ascii')
+                response = self.telnet_connection.read_until(b'>', timeout=1).decode('ascii')
                 print(f"Command '{command_with_f}' response: {response}")
         except Exception as e:
             print(f"Error: {e}")
@@ -153,14 +183,14 @@ class TelnetGUI:
         context_menu.post(event.x_root, event.y_root)
 
     def edit_command(self, button_info):
-        new_command = simpledialog.askstring("Edit Command", "Edit the command:", initialvalue=button_info['text'])
+        new_command = simpledialog.askstring("Edit Frequency", "Edit the frequency:", initialvalue=button_info['text'])
         if new_command:
             button_info['text'] = new_command
             self.update_main_screen()
             self.save_button_config()
 
     def remove_command(self, button_info):
-        confirmation = messagebox.askyesno("Remove Command", f"Are you sure you want to remove '{button_info['text']}'?")
+        confirmation = messagebox.askyesno("Remove Frequency", f"Are you sure you want to remove '{button_info['text']}'?")
         if confirmation:
             self.command_buttons.remove(button_info)
             self.update_main_screen()
