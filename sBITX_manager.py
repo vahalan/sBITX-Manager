@@ -160,7 +160,7 @@ class TelnetGUI:
         try:
             if self.telnet_connection:
                 self.telnet_connection.write(command.encode('ascii') + b'\r\n')
-                response = self.telnet_connection.read_until(b'>', timeout=1).decode('ascii')
+                response = self.telnet_connection.read_until(b'>', timeout=0.1).decode('ascii')
                 print(f"Command '{command}' response: {response}")
         except Exception as e:
             print(f"Error: {e}")
@@ -171,7 +171,7 @@ class TelnetGUI:
                 # Prepend "f " to the command before sending
                 command_with_f = f'f {command}'
                 self.telnet_connection.write(command_with_f.encode('ascii') + b'\r\n')
-                response = self.telnet_connection.read_until(b'>', timeout=1).decode('ascii')
+                response = self.telnet_connection.read_until(b'>', timeout=0.1).decode('ascii')
                 print(f"Command '{command_with_f}' response: {response}")
         except Exception as e:
             print(f"Error: {e}")
