@@ -210,14 +210,14 @@ class TelnetGUI:
  
     def load_button_config(self):
         try:
-            with open("button_config.json", "r") as config_file:
+            with open("sbmanager_config.json", "r") as config_file:
                 self.command_buttons = json.load(config_file)
         except FileNotFoundError:
             # If the config file doesn't exist, create an empty list
             self.command_buttons = []
 
     def save_button_config(self):
-        with open("sbmanagerconfig.json", "w") as config_file:
+        with open("sbmanager_config.json", "w") as config_file:
             json.dump(self.command_buttons, config_file)
 
 if __name__ == "__main__":
