@@ -5,7 +5,7 @@ sBITX Telnet Manager is a companion app that provides additional control for the
 
 ![Alt text](images/sbitx-manager.JPG)
 ![Alt text](images/sbitx-manager2.JPG)
-![Alt text](images/sbitx-manager3.JPG)
+![Alt text](images/sbitx-manager3a.JPG)
 ![Alt text](images/sbitx-manager4.JPG)
 
 
