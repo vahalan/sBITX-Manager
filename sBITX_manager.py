@@ -193,7 +193,7 @@ class TelnetGUI:
     def scan_commands(self):
         while self.scan_running:
             for button_info in self.command_buttons:
-                self.send_command(button_info['text'])
+                self.send_freq_command(button_info['text'])
                 time.sleep(self.scan_wait_time)
 
     def set_scan_wait_time(self):
