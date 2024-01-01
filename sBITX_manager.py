@@ -59,6 +59,14 @@ class TelnetGUI:
         command_menu.add_command(label="Audio Level", command=lambda: self.show_input_dialog("Audio"))
         command_menu.add_command(label="RF Output", command=lambda: self.show_input_dialog("RF Output"))
         command_menu.add_command(label="Clear Messages", command=lambda: self.send_command("clear"))
+        
+        agc_submenu = tk.Menu(command_menu, tearoff=0)
+        command_menu.add_cascade(label="AGC", menu=agc_submenu)
+        agc_submenu.add_command(label="Off", command=lambda: self.send_command("agc off"))
+        agc_submenu.add_command(label="Slow", command=lambda: self.send_command("agc slow"))
+        agc_submenu.add_command(label="Medium", command=lambda: self.send_command("agc medium"))
+        agc_submenu.add_command(label="Fast", command=lambda: self.send_command("agc fast"))
+
 
         command_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Mode", menu=command_menu)
@@ -67,7 +75,7 @@ class TelnetGUI:
         command_menu.add_command(label="CW", command=lambda: self.send_command("m cw"))
         command_menu.add_command(label="FT8", command=lambda: self.send_command("m ft8"))
         command_menu.add_command(label="Digital", command=lambda: self.send_command("m digital"))
-
+        
         # Create a menu for the scan feature
         scan_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Scan", menu=scan_menu)
@@ -97,7 +105,7 @@ class TelnetGUI:
         messagebox.showinfo("About", about_text)
 
     def add_command(self):
-        new_command = simpledialog.askstring("Add Command", "Enter the new command:")
+        new_command = simpledialog.askstring("Add Command", "Enter the frequency:")
         if new_command:
             button_info = {'text': new_command}
             button = tk.Button(self.master, text=button_info['text'], command=lambda cmd=button_info['text']: self.send_command(cmd))
@@ -124,6 +132,17 @@ class TelnetGUI:
                 self.telnet_connection.write(command.encode('ascii') + b'\r\n')
                 response = self.telnet_connection.read_until(b'>', timeout=2).decode('ascii')
                 print(f"Command '{command}' response: {response}")
+        except Exception as e:
+            print(f"Error: {e}")
+            
+    def send_freq_command(self, command):
+        try:
+            if self.telnet_connection:
+                # Prepend "f " to the command before sending
+                command_with_f = f'f {command}'
+                self.telnet_connection.write(command_with_f.encode('ascii') + b'\r\n')
+                response = self.telnet_connection.read_until(b'>', timeout=2).decode('ascii')
+                print(f"Command '{command_with_f}' response: {response}")
         except Exception as e:
             print(f"Error: {e}")
   
@@ -155,7 +174,7 @@ class TelnetGUI:
 
         # Display updated buttons on the main screen
         for button_info in self.command_buttons:
-            button = tk.Button(self.master, text=button_info['text'], command=lambda cmd=button_info['text']: self.send_command(cmd))
+            button = tk.Button(self.master, text=button_info['text'], command=lambda cmd=button_info['text']: self.send_freq_command(cmd))
             button.bind("<Button-3>", lambda event, info=button_info: self.show_context_menu(event, info))
             button.pack()
 
