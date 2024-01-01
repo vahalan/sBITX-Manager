@@ -16,6 +16,8 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 import telnetlib
 import json
+import time
+import threading
 
 class TelnetGUI:
     def __init__(self, master):
@@ -28,6 +30,10 @@ class TelnetGUI:
         self.telnet_port = 8081
 
         self.command_buttons = []
+        
+        self.scan_running = False
+        self.scan_thread = None
+        self.scan_wait_time = 1  # Default wait time between commands in seconds
 
         # Load button configurations from a config file
         self.load_button_config()
@@ -41,6 +47,7 @@ class TelnetGUI:
 
         telnet_menu.add_command(label="Open Telnet", command=self.open_telnet)
         telnet_menu.add_command(label="Close Telnet", command=self.close_telnet)
+        telnet_menu.add_command(label="About", command=self.show_about_dialog)
 
         command_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Command", menu=command_menu)
@@ -61,6 +68,13 @@ class TelnetGUI:
         command_menu.add_command(label="FT8", command=lambda: self.send_command("m ft8"))
         command_menu.add_command(label="Digital", command=lambda: self.send_command("m digital"))
 
+        # Create a menu for the scan feature
+        scan_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Scan", menu=scan_menu)
+        scan_menu.add_command(label="Start Scan", command=self.start_scan)
+        scan_menu.add_command(label="Stop Scan", command=self.stop_scan)
+        scan_menu.add_separator()
+        scan_menu.add_command(label="Set Scan Wait Time", command=self.set_scan_wait_time)
 
         # Display existing buttons on the main screen
         self.update_main_screen()
@@ -77,6 +91,10 @@ class TelnetGUI:
                 self.telnet_connection.close()
         except Exception as e:
             print(f"Error: {e}")
+    
+    def show_about_dialog(self):
+        about_text = "sBITX Telnet Manager\n\nCreated by JJ-W9JES\nLicense: MIT License\nCopyright (c) 2024 J. Kujawa"
+        messagebox.showinfo("About", about_text)
 
     def add_command(self):
         new_command = simpledialog.askstring("Add Command", "Enter the new command:")
@@ -141,6 +159,36 @@ class TelnetGUI:
             button.bind("<Button-3>", lambda event, info=button_info: self.show_context_menu(event, info))
             button.pack()
 
+    def start_scan(self):
+        if not self.scan_running:
+            self.scan_running = True
+            self.scan_thread = threading.Thread(target=self.scan_commands)
+            self.scan_thread.start()
+
+    def stop_scan(self):
+        if self.scan_running:
+            self.scan_running = False
+            if self.scan_thread.is_alive():
+                self.scan_thread.join()
+
+    def scan_commands(self):
+        while self.scan_running:
+            for button_info in self.command_buttons:
+                self.send_command(button_info['text'])
+                time.sleep(self.scan_wait_time)
+
+    def set_scan_wait_time(self):
+        user_input = simpledialog.askfloat("Set Scan Wait Time", "Enter wait time between commands (seconds):", initialvalue=self.scan_wait_time)
+        if user_input is not None:
+            self.scan_wait_time = max(0, user_input)
+
+        # You can also update the scan thread's sleep time if it's currently running
+        if self.scan_running:
+            self.stop_scan()
+            self.start_scan()
+
+        print(f"Scan wait time set to {self.scan_wait_time} seconds.")
+ 
     def load_button_config(self):
         try:
             with open("button_config.json", "r") as config_file:
