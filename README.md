@@ -9,17 +9,10 @@ sBITX Telnet Manager is a companion app that provides additional control for the
 ![Alt text](images/sbitx-manager4.JPG)
 
 
-Usage
+Installation
 -----
 
-You just need to download and run ```sBITX_manager.py``` or clone the repository.
-
-Right click on the frequency buttons to edit or remove them. The format for frequencies is ```xxxx``` where xxxx is the frequency
-such as ```14285``` or ```3850```
-
-You must open a telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on your tranceiver before using the sBITX manager.
-
-You can use this app locally on your sBitx or on a remote computer connected to the same network.
+You can either download and run ```sBITX_manager.py``` or clone the repository.
 
 Install on you sBITX using terminal:
 ```
@@ -44,5 +37,18 @@ Extract the zip file on your computer
 Double-click sBITX_manager.py
 ```
 
-
 A file named `sbmanager_config.json` will be created on first use and stored in the directory of the script.
+
+
+
+Usage
+-----
+
+Right click on the frequency buttons to edit or remove them. The format for frequencies is ```xxxx``` where xxxx is the frequency
+such as ```14285``` or ```3850```
+
+You must open a telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on your tranceiver before using the sBITX manager.
+
+You can use this app locally on your sBitx or on a remote computer connected to the same network.
+
+A USB eyboard and mouse are required to add or edit frequencies on the sBitx
