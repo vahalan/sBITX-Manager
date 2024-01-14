@@ -12,10 +12,13 @@ Here is a list of features:
 - Text adjustment for better readabilitiy on larger screens
 - Configuration is stored in a file, enabling easy transfer between devices and eliminating the need for manual entry of new memories
 
-![Alt text](images/sbitx-manager.JPG)
+![Alt text](images/sbitx-manager1.JPG)
 ![Alt text](images/sbitx-manager2.JPG)
-![Alt text](images/sbitx-manager3a.JPG)
+![Alt text](images/sbitx-manager3.JPG)
 ![Alt text](images/sbitx-manager4.JPG)
+![Alt text](images/sbitx-manager5.JPG)
+![Alt text](images/sbitx-manager6.JPG)
+![Alt text](images/sbitx-manager7.JPG)
 
 
 Installation
