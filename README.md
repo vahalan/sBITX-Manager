@@ -1,7 +1,16 @@
-sBITX Telnet Manager
+sBITX Manager v2.0
 --------------------------------
 
-sBITX Telnet Manager is a companion app that provides additional control for the sBITX HF transceiver. This tool uses the telnet protocol interface to send commands to the sBITX for performing remote control of the tranceiver.
+sBITX Manager is a companion app that provides additional control for the sBITX HF transceiver using the telnet protocol. 
+
+Here is a list of features:
+- Provides a user-friendly interface for interacting with the sBITX transceiver
+- Frequency memory management allows for adding, editing, and removal of frequencies and settings
+- A memory scan function that scans through the list of stored frequencies at a customized interval
+- Sends command specifying details such as VFO, Step, Mode, Bandwidth, IF, AGC, Audio, and more
+- Decodes messages in FT8 and CW modes
+- Text adjustment for better readabilitiy on larger screens
+- Configuration is stored in a file, enabling easy transfer between devices and eliminating the need for manual entry of new memories
 
 ![Alt text](images/sbitx-manager.JPG)
 ![Alt text](images/sbitx-manager2.JPG)
@@ -28,7 +37,7 @@ chmod +x ./sBITX_manager.py
 
 Windows Install:
 ```
-Ensure Python is installed and configured on your computer
+Ensure Python version 3 is installed and configured on your computer
 
 On the GitHub page, Select Code and Download the zip file
 
@@ -44,10 +53,7 @@ A file named `sbmanager_config.json` will be created on first use and stored in 
 Usage
 -----
 
-Right click on the frequency buttons to edit or remove them. The format for frequencies is ```xxxx``` where xxxx is the frequency
-such as ```14285``` or ```3850```
-
-You must open a telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on your tranceiver before using the sBITX manager.
+You must open the telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on your tranceiver before using the sBITX manager.
 
 You can use this app locally on your sBitx or on a remote computer connected to the same network.
 
