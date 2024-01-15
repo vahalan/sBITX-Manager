@@ -62,7 +62,8 @@ Usage
 -----
 
 You must open the telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on your tranceiver before using the sBITX manager.
+If you run into issues, restart the sBitx app on the transceiver and restart sBitx_Manager.
 
-You can use this app locally on your sBitx or on a remote computer connected to the same network.
+You can use this app on your sBitx or on a remote computer connected to the same network.
 
-A USB eyboard and mouse are required to add or edit frequencies on the sBitx
+A USB keyboard and mouse are required to add or edit frequencies on the sBitx
