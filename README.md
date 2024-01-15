@@ -40,7 +40,7 @@ chmod +x ./sBITX_manager.py
 
 Windows Install:
 ```
-Download the Windows release from https://github.com/drexjj/sBITX-Manager/releases/tag/Windows and unzip to the file to a folder of your choosing.
+Download the Windows release from [Windows Releases](https://github.com/drexjj/sBITX-Manager/releases/tag/Windows) and unzip to the file to a folder of your choosing.
 
 OR
 
