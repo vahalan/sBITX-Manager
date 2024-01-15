@@ -39,7 +39,7 @@ chmod +x ./sBITX_manager.py
 ```
 
 Windows Install:
-```
+
 Download the Windows release from [Windows Releases](https://github.com/drexjj/sBITX-Manager/releases/tag/Windows) and unzip to the file to a folder of your choosing.
 
 OR
@@ -51,7 +51,7 @@ On the GitHub page, Select Code and Download the zip file
 Extract the zip file on your computer
 
 Double-click sBITX_manager.py
-```
+
 
 A file named `sbmanager_config.json` will be created on first use and stored in the directory of the script.
 
