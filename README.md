@@ -11,7 +11,7 @@ Here is a list of features:
 - Decodes messages in FT8 and CW modes
 - Text adjustment for better readabilitiy on larger screens
 - Configuration is stored in a file, enabling easy transfer between devices and eliminating the need for manual entry of new memories
-- Includes a an app to reorder memories in the config file called sBITX+editor
+- Includes a an app to reorder memories in the config file called sBITX editor
 
 ![Alt text](images/sbitx-manager1.JPG)
 ![Alt text](images/sbitx-manager2.JPG)
