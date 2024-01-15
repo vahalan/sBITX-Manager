@@ -40,6 +40,10 @@ chmod +x ./sBITX_manager.py
 
 Windows Install:
 ```
+Download the Windows release from https://github.com/drexjj/sBITX-Manager/releases/tag/Windows and unzip to the file to a folder of your choosing.
+
+OR
+
 Ensure Python version 3 is installed and configured on your computer
 
 On the GitHub page, Select Code and Download the zip file
