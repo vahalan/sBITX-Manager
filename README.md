@@ -27,7 +27,7 @@ Installation
 
 You can either download and run ```sBITX_manager.py``` or clone the repository.
 
-Install on you sBITX using terminal:
+Install on you sBITX or Linux using terminal:
 ```
 git clone https://github.com/drexjj/sBITX-Manager.git
 
@@ -39,7 +39,7 @@ chmod +x ./sBITX_manager.py
 
 ```
 
-Windows Install:
+Windows 10/11 Install:
 
 Download the Windows release from [Windows Releases](https://github.com/drexjj/sBITX-Manager/releases/tag/Windows) and unzip to the file to a folder of your choosing.
 
