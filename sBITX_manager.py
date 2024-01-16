@@ -105,7 +105,7 @@ class MessageWindow(tk.Toplevel):
 class TelnetGUI:
     def __init__(self, master):
         self.master = master
-        self.master.title("sBITX Telnet Manager")
+        self.master.title("sBITX Manager")
 
         # Font configuration
         self.available_font_sizes = [14, 16, 18, 20, 22, 24, 26, 28, 30]  # Add more sizes as needed
