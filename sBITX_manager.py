@@ -367,6 +367,8 @@ class TelnetGUI:
             self.command_buttons.append(button_info)
             self.save_button_config()
 
+            self.update_main_screen()	
+
     def edit_command_submenu(self):
         selected_index = self.listbox.curselection()
         if selected_index:
