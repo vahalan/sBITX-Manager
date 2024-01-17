@@ -8,7 +8,6 @@ if [ -d "$working_directory" ]; then
     cd "$working_directory"    
     git reset --hard
     git pull
-    chmod +x $working_directory/sBITX_manager.py ./sBITX_editor.py
 else
     git clone https://github.com/drexjj/sBITX-Manager.git "$working_directory"
     if [ $? -ne 0 ]; then
@@ -21,7 +20,7 @@ fi
 cd "$working_directory"
 
 # Give execute permissions
-chmod +x ./sBITX_manager.py ./sBITX_editor.py
+chmod +x ./sBITX_manager.py ./sBITX_editor.py ./sbm_installer.sh ./sbm_uninstaller.sh
 
 # Create a desktop shortcut for sBITX_manager
 echo -e "[Desktop Entry]\nName=sBITX Manager\nExec=sh -c 'cd $working_directory && ./sBITX_manager.py'\nType=Application\n" | sudo tee /usr/share/applications/sBITX_manager.desktop > /dev/null
