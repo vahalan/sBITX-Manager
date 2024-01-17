@@ -25,9 +25,19 @@ Here is a list of features:
 Installation
 -----
 
-You can either download and run ```sbm_installer.sh``` or clone the repository and run ```sbm_installer.sh```
+You can either download and run ```sbm_installer.sh``` or clone the repository and run ```sbm_installer.sh```. See below.
 
-Install on you sBITX or Linux using terminal:
+Install on you sBITX or Linux using terminal (Method 1):
+```
+curl -O https://raw.githubusercontent.com/drexjj/sBITX-Manager/main/sbm_installer.sh
+
+chmod +x ./sbm_installer.sh
+
+./sbm_installer.sh
+
+```
+
+Install on you sBITX or Linux using terminal (Method 2):
 ```
 git clone https://github.com/drexjj/sBITX-Manager.git
 
