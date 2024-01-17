@@ -6,15 +6,15 @@ working_directory="/home/pi/sBITX-Manager"
 # Clone the repository and refresh local copy
 if [ -d "$working_directory" ]; then
     cd "$working_directory"    
-    git reset  --hard
+    git reset --hard
     git pull
 else
-    git clone https://github.com/drexjj/sBITX-Manager.git
-    exit 1
+    git clone https://github.com/drexjj/sBITX-Manager.git "$working_directory"
+    if [ $? -ne 0 ]; then
+        echo "Error cloning the repository. Exiting."
+        exit 1
+    fi
 fi
-
-# Clone the repository
-git clone https://github.com/drexjj/sBITX-Manager.git
 
 # Change directory to sBITX-Manager
 cd "$working_directory"
