@@ -43,7 +43,7 @@ git clone https://github.com/drexjj/sBITX-Manager.git
 
 cd sBITX-Manager
 
-chmod +x ./sbm_installer.sh
+chmod +x ./sbm_installer.sh ./sbm_installer.sh
 
 ./sbm_installer.sh
 
