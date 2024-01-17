@@ -3,16 +3,14 @@
 # Set the working directory
 working_directory="/home/pi/sBITX-Manager"
 
-# Check if the working directory already exists
+# Clone the repository and refresh local copy
 if [ -d "$working_directory" ]; then
-    read -p "The working directory already exists. Do you want to delete it? (y/n): " delete_confirmation
-    if [ "$delete_confirmation" == "y" ]; then
-        rm -rf "$working_directory"
-        echo "Working directory deleted."
-    else
-        echo "Setup aborted. Please choose a different working directory."
-        exit 1
-    fi
+    cd "$working_directory"    
+    git reset  --hard
+    git pull
+else
+    git clone https://github.com/drexjj/sBITX-Manager.git
+    exit 1
 fi
 
 # Clone the repository
