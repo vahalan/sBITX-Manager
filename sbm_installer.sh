@@ -8,7 +8,7 @@ if [ -d "$working_directory" ]; then
     cd "$working_directory"    
     git reset --hard
     git pull
-    chmod +x ./sBITX_manager.py ./sBITX_editor.py
+    chmod +x $working_directory/sBITX_manager.py ./sBITX_editor.py
 else
     git clone https://github.com/drexjj/sBITX-Manager.git "$working_directory"
     if [ $? -ne 0 ]; then
