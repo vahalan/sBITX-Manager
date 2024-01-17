@@ -25,7 +25,7 @@ Here is a list of features:
 Installation
 -----
 
-You can either download and run ```sBITX_manager.py``` or clone the repository.
+You can either download and run ```sbm_installer.sh``` or clone the repository and run ```sbm_installer.sh```
 
 Install on you sBITX or Linux using terminal:
 ```
@@ -33,11 +33,9 @@ git clone https://github.com/drexjj/sBITX-Manager.git
 
 cd sBITX-Manager
 
-chmod +x ./sBITX_manager.py ./sBITX_editor.py
+chmod +x ./sbm_installer.sh
 
-./sBITX_manager.py
-./sBITX_editor.py
-
+./sbm_installer.sh
 
 ```
 
