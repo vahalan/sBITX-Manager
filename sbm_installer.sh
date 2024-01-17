@@ -1,10 +1,19 @@
 #!/bin/bash
 
-# Clone the repository
-git clone https://github.com/drexjj/sBITX-Manager.git
-
 # Set the working directory
 working_directory="/home/pi/sBITX-Manager"
+
+# Check if the working directory already exists
+if [ -d "$working_directory" ]; then
+    read -p "The working directory already exists. Do you want to overwrite it? (y/n): " overwrite_confirmation
+    if [ "$overwrite_confirmation" != "y" ]; then
+        echo "Setup aborted."
+        exit 1
+    fi
+fi
+
+# Clone the repository
+git clone https://github.com/drexjj/sBITX-Manager.git
 
 # Change directory to sBITX-Manager
 cd "$working_directory"
