@@ -64,7 +64,7 @@ Extract the zip file on your computer
 Double-click sBITX_manager.py
 
 
-A file named `sbmanager_config.json` will be created on first use and stored in the directory of the script. ''Make a backup of this file before upgrading to newer versions''
+A file named `sbmanager_config.json` will be created on first use and stored in the directory of the script. ``Make a backup of this file before upgrading to newer versions``
 
 
 
