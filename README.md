@@ -31,7 +31,7 @@ Install on you sBITX or Linux using terminal (Method 1):
 ```
 curl -O https://raw.githubusercontent.com/drexjj/sBITX-Manager/main/sbm_installer.sh
 
-chmod +x ./sbm_installer.sh
+chmod +x ./sbm_installer.sh ./sbm_installer.sh
 
 ./sbm_installer.sh
 
