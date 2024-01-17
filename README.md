@@ -61,9 +61,11 @@ A file named `sbmanager_config.json` will be created on first use and stored in 
 Usage
 -----
 
-You must open the telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on your tranceiver before using the sBITX manager.
+You must open the telnet session from the menu before sending commands to the sBITX. The sBITX app must be running on on the sBitx before controlling it with sBITX Manager.
 If you run into issues, restart the sBitx app on the transceiver and restart sBitx_Manager.
 
-You can use this app on your sBitx or on a remote computer connected to the same network.
+You can use this app on your sBitx or on a remote computer connected to the same WIFI or LAN connected network.
 
-A USB keyboard and mouse are required to add or edit frequencies on the sBitx
+A USB keyboard and mouse are required to add or edit frequencies directly on the sBitx.
+
+A file named `sbmanager_config.json` will be created in the sBitX Manager directory when you save your first memory. If you would like to try a preset list containing FT8 frequencies, QRP CW Calling frequencies, and NIST Time frequencies, then rename the `sbmanager_config.example` file to `sbmanager_config.json` in the sBITX-Manager folder and start sBITX Manager.
