@@ -5,9 +5,12 @@ working_directory="/home/pi/sBITX-Manager"
 
 # Check if the working directory already exists
 if [ -d "$working_directory" ]; then
-    read -p "The working directory already exists. Do you want to overwrite it? (y/n): " overwrite_confirmation
-    if [ "$overwrite_confirmation" != "y" ]; then
-        echo "Setup aborted."
+    read -p "The working directory already exists. Do you want to delete it? (y/n): " delete_confirmation
+    if [ "$delete_confirmation" == "y" ]; then
+        rm -rf "$working_directory"
+        echo "Working directory deleted."
+    else
+        echo "Setup aborted. Please choose a different working directory."
         exit 1
     fi
 fi
