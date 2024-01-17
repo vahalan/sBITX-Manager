@@ -34,8 +34,11 @@ git clone https://github.com/drexjj/sBITX-Manager.git
 cd sBITX-Manager
 
 chmod +x ./sBITX_manager.py
+chmod +x ./sBITX_editor.py
 
 ./sBITX_manager.py
+./sBITX_editor.py
+
 
 ```
 
